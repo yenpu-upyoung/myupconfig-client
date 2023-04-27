@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: user
+  config:
+    import: configserver:https://myupconfig-service-lrghcvrz2a-de.a.run.app
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
