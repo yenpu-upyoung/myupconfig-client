@@ -40,6 +40,7 @@ ENV APM_AGENT -javaagent:/elastic-apm-agent.jar \
               -Delastic.apm.environment=test \
               -Delastic.apm.application_packages=com.example.myupconfigclient
 
+RUN pwd
 RUN ls -al
 RUN echo $APM_AGENT
 
