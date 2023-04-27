@@ -44,4 +44,4 @@ RUN ls -al
 RUN echo $APM_AGENT
 
 # Run the web service on container startup.
-CMD ["java", "-Dspring.profiles.active=${PROFILE}", "-jar", "/myupconfig.jar"]
+CMD ["java", "${APM_AGENT} -Dspring.profiles.active=${PROFILE}", "-jar", "/myupconfig.jar"]
