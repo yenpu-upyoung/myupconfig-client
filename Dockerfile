@@ -32,7 +32,7 @@ COPY --from=build-env /app/target/myupconfig-*.jar /myupconfig.jar
 # Copy the apm agent
 COPY --from=docker.elastic.co/observability/apm-agent-java:latest /usr/agent/elastic-apm-agent.jar /elastic-apm-agent.jar
 
-ARG APM_TOKEN
+ARG APM_AGENT
 ENV APM_AGENT -javaagent:/elastic-apm-agent.jar \
               -Delastic.apm.service_name=config-client \
               -Delastic.apm.secret_token=${APM_TOKEN} \
@@ -40,6 +40,8 @@ ENV APM_AGENT -javaagent:/elastic-apm-agent.jar \
               -Delastic.apm.environment=test \
               -Delastic.apm.application_packages=com.example.myupconfigclient
 
+RUN echo $APM_TOKEN
+RUN echo $PROFILE
 RUN pwd
 RUN ls -al
 RUN echo $APM_AGENT
