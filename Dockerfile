@@ -21,4 +21,4 @@ FROM openjdk:17.0.2-slim
 COPY --from=build-env /app/target/myupconfig-*.jar /myupconfig.jar
 
 # Run the web service on container startup.
-CMD ["java", "-jar", "/myupconfig.jar"]
+CMD ["java", "-jar", "-Dspring.profiles.active=stage", "/myupconfig.jar"]
