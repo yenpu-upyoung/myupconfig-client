@@ -40,11 +40,12 @@ COPY --from=docker.elastic.co/observability/apm-agent-java:latest /usr/agent/ela
 #              -Delastic.apm.environment=test \
 #              -Delastic.apm.application_packages=com.example.myupconfigclient
 
-RUN #echo $APM_TOKEN
+RUN echo $APM_TOKEN
+RUN echo $PROFILE
 RUN echo ${PROFILE}
 RUN pwd
 RUN ls -al
-RUN #echo $APM_AGENT
+RUN echo $APM_AGENT
 
 # Run the web service on container startup.
 CMD ["java", "-jar", "-Dspring.profiles.active=${PROFILE}", "/myupconfig.jar"]
