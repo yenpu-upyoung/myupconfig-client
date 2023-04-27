@@ -2,6 +2,9 @@
 # https://hub.docker.com/_/maven
 FROM maven:3-openjdk-17-slim AS build-env
 
+ARG PROFILE
+ENV PROFILE $PROFILE
+
 # Set the working directory to /app
 WORKDIR /app
 # Copy the pom.xml file to download dependencies
@@ -21,4 +24,4 @@ FROM openjdk:17.0.2-slim
 COPY --from=build-env /app/target/myupconfig-*.jar /myupconfig.jar
 
 # Run the web service on container startup.
-CMD ["java", "-jar", "-Dspring.profiles.active=stage", "/myupconfig.jar"]
+CMD ["java", "-jar", "-Dspring.profiles.active=${PROFILE}", "/myupconfig.jar"]
