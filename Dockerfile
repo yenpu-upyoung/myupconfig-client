@@ -41,7 +41,7 @@ COPY --from=docker.elastic.co/observability/apm-agent-java:latest /usr/agent/ela
 #              -Delastic.apm.application_packages=com.example.myupconfigclient
 
 RUN #echo $APM_TOKEN
-RUN echo $PROFILE
+RUN echo ${PROFILE}
 RUN pwd
 RUN ls -al
 RUN #echo $APM_AGENT
