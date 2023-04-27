@@ -44,4 +44,4 @@ RUN ls -al
 RUN echo $APM_AGENT
 
 # Run the web service on container startup.
-CMD ["java", "${APM_AGENT} -Dspring.profiles.active=${PROFILE}", "-jar", "/myupconfig.jar"]
+CMD ["java", "-javaagent:/elastic-apm-agent.jar -Delastic.apm.service_name=config-client -Delastic.apm.secret_token=${APM_TOKEN} -Delastic.apm.server_url=${APM_SERVER} -Delastic.apm.environment=test -Delastic.apm.application_packages=com.example.myupconfigclient -Dspring.profiles.active=${PROFILE}", "-jar", "/myupconfig.jar"]
