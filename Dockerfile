@@ -18,7 +18,7 @@ RUN mvn package -DskipTests
 FROM openjdk:17.0.2-slim
 
 # Copy the jar to the production image from the builder stage.
-COPY --from=build-env /app/build/libs/myupconfig-*.jar /myupconfig.jar
+COPY --from=build-env /app/target/myupconfig-*.jar /myupconfig.jar
 
 # Run the web service on container startup.
 CMD ["java", "-jar", "/myupconfig.jar"]
