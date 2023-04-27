@@ -40,5 +40,8 @@ ENV APM_AGENT -javaagent:/elastic-apm-agent.jar \
               -Delastic.apm.environment=test \
               -Delastic.apm.application_packages=com.example.myupconfigclient
 
+RUN ls -al
+RUN echo $APM_AGENT
+
 # Run the web service on container startup.
 CMD ["java", "-jar", "${APM_AGENT} -Dspring.profiles.active=${PROFILE}", "/myupconfig.jar"]
