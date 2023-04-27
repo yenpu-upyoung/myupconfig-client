@@ -1,16 +1,16 @@
 # Use the official maven/Java 11 image to create a build artifact.
 # https://hub.docker.com/_/maven
-FROM gradle:7.6.1-jdk17-alpine AS build-env
+FROM maven:3-openjdk-17-slim AS build-env
 
 # Set the working directory to /app
 WORKDIR /app
 # Copy the pom.xml file to download dependencies
-COPY build.gradle ./
+COPY pom.xml ./
 # Copy local code to the container image.
 COPY src ./src
 
 # Download dependencies and build a release artifact.
-RUN gradle build -x test
+RUN mvn package -DskipTests
 
 # Use OpenJDK for base image.
 # https://hub.docker.com/_/openjdk
