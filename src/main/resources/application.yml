@@ -2,8 +2,9 @@ spring:
   application:
     name: user
   config:
-    import: configserver:https://myupconfig-service-lrghcvrz2a-de.a.run.app
+#    import: configserver:https://myupconfig-service-lrghcvrz2a-de.a.run.app
 #    import: configserver:https://myupconfig-service-fullaccess-lrghcvrz2a-de.a.run.app
+    import: configserver:https://myupconfig-service-internal-unauthenticated-lrghcvrz2a-de.a.run.app
 
 management:
   endpoints:
