@@ -2,8 +2,8 @@
 # https://hub.docker.com/_/maven
 FROM maven:3-openjdk-17-slim AS build-env
 
-ARG PROFILE
-ENV PROFILE $APM_PROFILE
+#ARG PROFILE
+#ENV PROFILE $APM_PROFILE
 
 ARG APM_SERVER
 ENV APM_SERVER $APM_SERVER
@@ -40,5 +40,5 @@ CMD ["java", \
      "-Delastic.apm.server_url=${APM_SERVER}", \
      "-Delastic.apm.environment=test", \
      "-Delastic.apm.application_packages=com.example.myupconfigclient", \
-     "-Dspring.profiles.active=${PROFILE}", \
+     "-Dspring.profiles.active=${APM_PROFILE}", \
      "-jar", "/myupconfig.jar"]
