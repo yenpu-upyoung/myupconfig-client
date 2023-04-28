@@ -5,11 +5,11 @@ FROM maven:3-openjdk-17-slim AS build-env
 #ARG PROFILE
 #ENV PROFILE $APM_PROFILE
 
-#ARG APM_SERVER
-#ENV APM_SERVER $APM_SERVER
-#
-#ARG APM_TOKEN
-#ENV APM_TOKEN $APM_TOKEN
+ARG APM_SERVER
+ENV APM_SERVER $APM_SERVER
+
+ARG APM_TOKEN
+ENV APM_TOKEN $APM_TOKEN
 
 # Set the working directory to /app
 WORKDIR /app
@@ -37,7 +37,7 @@ CMD ["java", \
      "-javaagent:/elastic-apm-agent.jar",  \
      "-Delastic.apm.service_name=config-client", \
      "-Delastic.apm.secret_token=${APM_TOKEN}", \
-     "-Delastic.apm.server_url=https://${APM_SERVER}:443", \
+     "-Delastic.apm.server_url=${APM_SERVER}", \
      "-Delastic.apm.environment=test", \
      "-Delastic.apm.application_packages=com.example.myupconfigclient", \
      "-Dspring.profiles.active=${APM_PROF}", \
