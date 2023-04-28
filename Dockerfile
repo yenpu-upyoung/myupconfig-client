@@ -37,7 +37,7 @@ CMD ["java", \
      "-javaagent:/elastic-apm-agent.jar",  \
      "-Delastic.apm.service_name=config-client", \
      "-Delastic.apm.secret_token=${APM_TOKEN}", \
-     "-Delastic.apm.server_url=$APM_PROFILE", \
+     "-Delastic.apm.server_url=${APM_SERVER}", \
      "-Delastic.apm.environment=test", \
      "-Delastic.apm.application_packages=com.example.myupconfigclient", \
      "-Dspring.profiles.active=${APM_PROFILE}", \
