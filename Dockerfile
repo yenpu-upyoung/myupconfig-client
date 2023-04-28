@@ -5,7 +5,6 @@ FROM maven:3-openjdk-17-slim AS build-env
 #ARG PROFILE
 #ENV PROFILE $APM_PROFILE
 
-# Add comment
 
 ARG APM_SERVER
 ENV APM_SERVER $APM_SERVER
