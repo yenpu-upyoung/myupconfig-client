@@ -40,5 +40,5 @@ CMD ["java", \
      "-Delastic.apm.server_url=https://${APM_SERVER}:443", \
      "-Delastic.apm.environment=test", \
      "-Delastic.apm.application_packages=com.example.myupconfigclient", \
-     "-Dspring.profiles.active=${APM_PROFILE}", \
+     "-Dspring.profiles.active=${APM_PROF}", \
      "-jar", "/myupconfig.jar"]
