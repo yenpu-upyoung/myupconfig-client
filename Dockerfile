@@ -30,7 +30,7 @@ FROM openjdk:17.0.2-slim
 COPY --from=build-env /app/target/myupconfig-*.jar /myupconfig.jar
 
 # Copy the apm agent
-COPY --from=docker.elastic.co/observability/apm-agent-java:latest /usr/agent/elastic-apm-agent.jar /elastic-apm-agent.jar
+COPY --from=docker.elastic.co/observability/apm-agent-java:1.37.0 /usr/agent/elastic-apm-agent.jar /elastic-apm-agent.jar
 
 RUN chmod 755 /elastic-apm-agent.jar
 
