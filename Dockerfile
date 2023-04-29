@@ -7,11 +7,11 @@ FROM maven:3-openjdk-17-slim AS build-env
 
 # Add comment
 
-ARG APM_SERVER
-ENV APM_SERVER $APM_SERVER
-
-ARG APM_TOKEN
-ENV APM_TOKEN $APM_TOKEN
+#ARG APM_SERVER
+#ENV APM_SERVER $APM_SERVER
+#
+#ARG APM_TOKEN
+#ENV APM_TOKEN $APM_TOKEN
 
 # Set the working directory to /app
 WORKDIR /app
@@ -34,6 +34,8 @@ COPY --from=build-env /app/target/myupconfig-*.jar /myupconfig.jar
 # Copy the apm agent
 COPY --from=docker.elastic.co/observability/apm-agent-java:1.37.0 /usr/agent/elastic-apm-agent.jar /elastic-apm-agent.jar
 
+RUN echo "The APM_TOKEN: $APM_TOKEN"
+RUN echo "The APM_SERVER: $APM_SERVER"
 # Run the web service on container startup.
 CMD ["java", \
      "-javaagent:/elastic-apm-agent.jar",  \
