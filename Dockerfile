@@ -34,13 +34,13 @@ COPY --from=build-env /app/target/myupconfig-*.jar /myupconfig.jar
 # Copy the apm agent
 COPY --from=docker.elastic.co/observability/apm-agent-java:1.37.0 /usr/agent/elastic-apm-agent.jar /elastic-apm-agent.jar
 
-RUN echo "The APM_TOKEN: $APM_TOKEN"
-RUN echo "The APM_SERVER: $APM_SERVER"
-RUN echo "The APM_PROF: $APM_PROF"
-
-RUN echo "The APM_TOKEN 2: ${APM_TOKEN}"
-RUN echo "The APM_SERVER 2: ${APM_SERVER}"
-RUN echo "The APM_PROF 2: ${APM_PROF}"
+#RUN echo "The APM_TOKEN: $APM_TOKEN"
+#RUN echo "The APM_SERVER: $APM_SERVER"
+#RUN echo "The APM_PROF: $APM_PROF"
+#
+#RUN echo "The APM_TOKEN 2: ${APM_TOKEN}"
+#RUN echo "The APM_SERVER 2: ${APM_SERVER}"
+#RUN echo "The APM_PROF 2: ${APM_PROF}"
 # Run the web service on container startup.
 CMD ["java", \
      "-javaagent:/elastic-apm-agent.jar",  \
