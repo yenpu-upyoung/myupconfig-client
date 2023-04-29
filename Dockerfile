@@ -7,11 +7,11 @@ FROM maven:3-openjdk-17-slim AS build-env
 
 # Add comment
 
-ARG APM_SERVER
-ENV APM_SERVER ${APM_SERVER}
-
-ARG APM_TOKEN
-ENV APM_TOKEN ${APM_TOKEN}
+#ARG APM_SERVER
+#ENV APM_SERVER ${APM_SERVER}
+#
+#ARG APM_TOKEN
+#ENV APM_TOKEN ${APM_TOKEN}
 
 # Set the working directory to /app
 WORKDIR /app
@@ -42,12 +42,22 @@ COPY --from=docker.elastic.co/observability/apm-agent-java:1.37.0 /usr/agent/ela
 #RUN echo "The APM_SERVER 2: ${APM_SERVER}"
 #RUN echo "The APM_PROF 2: ${APM_PROF}"
 # Run the web service on container startup.
-CMD ["java", \
-     "-javaagent:/elastic-apm-agent.jar",  \
-     "-Delastic.apm.service_name=config-client", \
-     "-Delastic.apm.secret_token=${APM_TOKEN}", \
-     "-Delastic.apm.server_url=${APM_SERVER}", \
-     "-Delastic.apm.environment=test", \
-     "-Delastic.apm.application_packages=com.example.myupconfigclient", \
-     "-Dspring.profiles.active=test", \
-     "-jar", "/myupconfig.jar"]
+#CMD ["java", \
+#     "-javaagent:/elastic-apm-agent.jar",  \
+#     "-Delastic.apm.service_name=config-client", \
+#     "-Delastic.apm.secret_token=${APM_TOKEN}", \
+#     "-Delastic.apm.server_url=${APM_SERVER}", \
+#     "-Delastic.apm.environment=test", \
+#     "-Delastic.apm.application_packages=com.example.myupconfigclient", \
+#     "-Dspring.profiles.active=${APM_PROF}", \
+#     "-jar", "/myupconfig.jar"]
+
+CMD java \
+    -javaagent:/elastic-apm-agent.jar  \
+    -Delastic.apm.service_name=config-client \
+    -Delastic.apm.secret_token=${APM_TOKEN} \
+    -Delastic.apm.server_url=${APM_SERVER} \
+    -Delastic.apm.environment=test \
+    -Delastic.apm.application_packages=com.example.myupconfigclient \
+    -Dspring.profiles.active=${APM_PROF} \
+    -jar /myupconfig.jar
